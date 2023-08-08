@@ -15,6 +15,21 @@ public class Produto {
     public LocalDate dataPrazo;
     public Status status;
 
+    public Produto() {
+    }
+
+    public Produto(Long id, String nome, String descricao, Double precoVenda,
+                   Double precoCompra, LocalDate dataValidade, LocalDate dataPrazo, Status status) {
+        this.id = id;
+        this.nome = nome;
+        this.descricao = descricao;
+        this.precoVenda = precoVenda;
+        this.precoCompra = precoCompra;
+        this.dataValidade = dataValidade;
+        this.dataPrazo = dataPrazo;
+        this.status = status;
+    }
+
     public Long getId() {
         return id;
     }
@@ -77,5 +92,12 @@ public class Produto {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Double calculaMargemDeLucro() {
+        double lucro = precoVenda - precoCompra;
+        double margemLucro = (lucro/precoVenda) * 100;
+
+        return margemLucro;
     }
 }
