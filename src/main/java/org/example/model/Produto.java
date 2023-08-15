@@ -4,62 +4,21 @@ import org.example.enums.Status;
 
 import java.time.LocalDate;
 
-public class Produto {
+public class Produto extends ItemVendavel {
 
-    public Long id;
-    public String nome;
-    public String descricao;
-    public Double precoVenda;
-    public Double precoCompra;
-    public LocalDate dataValidade;
-    public LocalDate dataPrazo;
-    public Status status;
+    private String nome;
+    private Double precoCompra;
+    private LocalDate dataValidade;
+    private LocalDate dataPrazo;
+    private Status status;
 
     public Produto() {
+
     }
 
-    public Produto(Long id, String nome, String descricao, Double precoVenda,
-                   Double precoCompra, LocalDate dataValidade, LocalDate dataPrazo, Status status) {
-        this.id = id;
+    public Produto(String nome, String descricao) {
         this.nome = nome;
-        this.descricao = descricao;
-        this.precoVenda = precoVenda;
-        this.precoCompra = precoCompra;
-        this.dataValidade = dataValidade;
-        this.dataPrazo = dataPrazo;
-        this.status = status;
-    }
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getNome() {
-        return nome;
-    }
-
-    public void setNome(String nome) {
-        this.nome = nome;
-    }
-
-    public String getDescricao() {
-        return descricao;
-    }
-
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
-    }
-
-    public Double getPrecoVenda() {
-        return precoVenda;
-    }
-
-    public void setPrecoVenda(Double precoVenda) {
-        this.precoVenda = precoVenda;
+        super.setDescricao(descricao);
     }
 
     public Double getPrecoCompra() {
@@ -95,9 +54,17 @@ public class Produto {
     }
 
     public Double calculaMargemDeLucro() {
-        double lucro = precoVenda - precoCompra;
-        double margemLucro = (lucro/precoVenda) * 100;
+        double lucro = super.getValorUnitario() - precoCompra;
+        double margemLucro = (lucro / super.getValorUnitario()) * 100;
 
         return margemLucro;
+    }
+
+    @Override
+    public String toString() {
+        return "Produto{" +
+                "nome='" + nome + '\'' +
+                "descricao='" + super.getDescricao() + '\'' +
+                '}';
     }
 }

@@ -1,24 +1,33 @@
 package org.example;
 
-import org.example.enums.Status;
-import org.example.model.Produto;
+import org.example.enums.FormaPagamento;
+import org.example.model.*;
 
 import java.time.LocalDate;
 
 public class Application {
 
     public static void main(String[] args) {
+        Cliente bruno = new Cliente();
 
-        Produto produto = new Produto(10L, "Folha","Folha A4", 1500.00, 1200.00,
-                LocalDate.of(2023, 01, 1), LocalDate.of(2023, 01, 15), Status.DISPONIVEL);
+        bruno.setNome("Bruno Venturini");
+        bruno.setCpf("07222267741");
 
-//        produto.setNome("Folha A4");
-//        produto.setDescricao("Folha branca, tamanho A4");
-//        produto.setDataPrazo(LocalDate.of(2023, 1, 15));
-//        produto.setPrecoCompra(1200.00);
-//        produto.setPrecoVenda(1500.00);
-//        produto.setStatus(Status.DISPONIVEL);
+        Venda venda = new Venda();
 
-        System.out.println("Margem " + produto.calculaMargemDeLucro() + "%");
+        venda.setDataVenda(LocalDate.now());
+        venda.setCliente(bruno);
+        venda.setFormaPagamento(FormaPagamento.PIX_FISICO);
+        venda.setObservacao("Observação");
+
+        Produto produto = new Produto("Computador", "i5 8Gb");
+        ItemVenda itemVenda = new ItemVenda(produto, 100.00, 1.00, 10.00);
+        venda.addItemVenda(itemVenda);
+
+        Produto produto2 = new Produto("Computador", "i7 16Gb");
+        ItemVenda itemVenda2 = new ItemVenda(produto2, 100.00, 1.00, 10.00);
+        venda.addItemVenda(itemVenda2);
+
+        System.out.println(venda.getItens());
     }
 }
