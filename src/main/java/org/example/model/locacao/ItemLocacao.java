@@ -1,12 +1,14 @@
-package org.example.model;
+package org.example.model.locacao;
 
-public class ItemVenda extends EntityId {
+import org.example.model.Produto;
+
+public class ItemLocacao {
     private Produto produto;
     private Double valorUnitario;
     private Double quantidade;
     private Double desconto;
 
-    public ItemVenda(Produto produto, Double valorUnitario, Double quantidade, Double desconto) {
+    public ItemLocacao(Produto produto, Double valorUnitario, Double quantidade, Double desconto) {
         this.produto = produto;
         this.valorUnitario = valorUnitario;
         this.quantidade = quantidade;
@@ -45,13 +47,9 @@ public class ItemVenda extends EntityId {
         this.desconto = desconto;
     }
 
-    @Override
-    public String toString() {
-        return "ItemVenda{" +
-                "produto=" + produto +
-                ", valorUnitario=" + valorUnitario +
-                ", quantidade=" + quantidade +
-                ", desconto=" + desconto +
-                '}';
+    public Double getValorCalculado() {
+        double valorTotal = this.getValorUnitario() * this.getQuantidade();
+        double descontoCalculado = valorTotal * (this.desconto / 100);
+        return valorTotal - descontoCalculado;
     }
 }

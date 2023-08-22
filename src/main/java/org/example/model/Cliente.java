@@ -1,6 +1,8 @@
 package org.example.model;
 
-public class Cliente extends Pessoa{
+import org.example.model.abstracts.Pessoa;
+
+public class Cliente extends Pessoa {
     private String cpf;
     private String rg;
 
@@ -18,5 +20,10 @@ public class Cliente extends Pessoa{
 
     public void setRg(String rg) {
         this.rg = rg;
+    }
+
+    @Override
+    public String getDocumentoPrincipal() {
+        return this.getCpf();
     }
 }

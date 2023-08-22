@@ -1,18 +1,22 @@
-package org.example.model;
+package org.example.model.venda;
 
 import org.example.enums.FormaPagamento;
+import org.example.enums.TipoOperacao;
+import org.example.interfaces.OperacaoFinanceira;
+import org.example.model.Cliente;
+import org.example.model.abstracts.EntityId;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Venda extends EntityId{
+public class Venda extends EntityId implements OperacaoFinanceira {
 
+    private List<ItemVenda> itens = new ArrayList<>();
     private LocalDate dataVenda;
     private FormaPagamento formaPagamento;
-    private String observacao;
     private Cliente cliente;
-    private List<ItemVenda> itens = new ArrayList<>();
+    private String observacao;
 
     public LocalDate getDataVenda() {
         return dataVenda;
@@ -67,5 +71,22 @@ public class Venda extends EntityId{
                 ", cliente=" + cliente +
                 ", itens=" + itens +
                 '}';
+    }
+
+    @Override
+    public LocalDate getDataOperacao() {
+        return this.getDataVenda();
+    }
+
+    @Override
+    public Double getValorTotalOperacao() {
+        return this.getItens().stream()
+                .mapToDouble(ItemVenda::getValorCalculado)
+                .sum();
+    }
+
+    @Override
+    public TipoOperacao getTipoOperacao() {
+        return TipoOperacao.CREDITO;
     }
 }

@@ -1,6 +1,7 @@
 package org.example.model;
 
 import org.example.enums.Status;
+import org.example.model.abstracts.ItemVendavel;
 
 import java.time.LocalDate;
 

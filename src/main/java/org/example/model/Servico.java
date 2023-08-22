@@ -1,5 +1,7 @@
 package org.example.model;
 
+import org.example.model.abstracts.ItemVendavel;
+
 public class Servico extends ItemVendavel {
     private Double quantidadeHoras;
 
@@ -7,6 +9,11 @@ public class Servico extends ItemVendavel {
         super.setDescricao(descricao);
         super.setValorUnitario(valorUnitario);
         this.quantidadeHoras = quantidadeHoras;
+    }
+
+    @Override
+    public Boolean getEstocavel() {
+        return Boolean.FALSE;
     }
 
     public Double getQuantidadeHoras() {

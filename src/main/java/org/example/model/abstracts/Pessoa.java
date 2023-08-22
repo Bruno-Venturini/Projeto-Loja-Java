@@ -1,6 +1,6 @@
-package org.example.model;
+package org.example.model.abstracts;
 
-public class Pessoa extends EntityId{
+public abstract class Pessoa extends EntityId{
     private String nome;
     private String telefone;
     private String endereco;
@@ -37,4 +37,6 @@ public class Pessoa extends EntityId{
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public abstract String getDocumentoPrincipal();
 }

@@ -1,6 +1,8 @@
 package org.example.model;
 
-public class Fornecedor extends Pessoa{
+import org.example.model.abstracts.Pessoa;
+
+public class Fornecedor extends Pessoa {
     private String cnpj;
     private String inscricaoEstadual;
 
@@ -18,5 +20,10 @@ public class Fornecedor extends Pessoa{
 
     public void setInscricaoEstadual(String inscricaoEstadual) {
         this.inscricaoEstadual = inscricaoEstadual;
+    }
+
+    @Override
+    public String getDocumentoPrincipal() {
+        return this.getCnpj();
     }
 }
