@@ -1,6 +1,7 @@
 package org.example.model;
 
 import org.example.enums.Status;
+import org.example.exceptions.MargemLucroException;
 import org.example.model.abstracts.ItemVendavel;
 
 import java.time.LocalDate;
@@ -20,6 +21,13 @@ public class Produto extends ItemVendavel {
     public Produto(String nome, String descricao) {
         this.nome = nome;
         super.setDescricao(descricao);
+    }
+
+    public void setPrecoVenda(Double precoVenda) throws MargemLucroException {
+        super.setValorUnitario(precoVenda);
+        if (this.calculaMargemDeLucro() < 20.0) {
+            throw new MargemLucroException();
+        }
     }
 
     public Double getPrecoCompra() {

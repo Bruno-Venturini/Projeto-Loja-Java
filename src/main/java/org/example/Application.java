@@ -1,6 +1,7 @@
 package org.example;
 
 import org.example.enums.FormaPagamento;
+import org.example.exceptions.MargemLucroException;
 import org.example.model.*;
 import org.example.model.balanco.Balanco;
 import org.example.model.compra.Compra;
@@ -14,7 +15,7 @@ import java.time.LocalDate;
 
 public class Application {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws MargemLucroException {
         Fornecedor fornecedor = new Fornecedor();
         fornecedor.setNome("Dell Ltda");
 
@@ -61,5 +62,11 @@ public class Application {
         balanco.addOperacao(locacao);
 
         balanco.imprimirBalanco();
+
+        Produto produto2 = new Produto();
+        produto2.setPrecoCompra(1200.00);
+        produto2.setPrecoVenda(1400.00);
+
+
     }
 }
